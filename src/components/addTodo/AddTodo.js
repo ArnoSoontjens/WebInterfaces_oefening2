@@ -4,7 +4,7 @@ import TodoForm from "./TodoForm";
 
 const AddTodo = () => {
     return (
-        <Container>
+        <Container style={{ padding: "50px" }}>
             <Header>Add a new to-do</Header>
             <TodoForm />
         </Container>
