@@ -9,7 +9,6 @@ const MAP_ID = "blueprint";
 const TodoForm = () => {
     const [loading, setLoading] = useState(false);
     const [showMarker, setShowMarker] = useState(false);
-    const [markerPos, setMarkerPos] = useState({ x: 0, y: 0 });
 
     const [formData, setFormData] = useState({
         title: "",
@@ -22,7 +21,8 @@ const TodoForm = () => {
 
     const onSubmit = () => {
         setLoading(true);
-        console.log("Values { title: ", formData.title, ", description: ", formData.description, " , x: ", markerPos.x, ", y: ", markerPos.y, "}")
+        const { title, description, x, y } = formData;
+        console.log("Values { title: ", title, ", description: ", description, ", x: ", x, ", y: ", y, "}")
         //TODO: add x and y and submit to backend
         setLoading(false);
     }
@@ -32,7 +32,7 @@ const TodoForm = () => {
         const x = clientX - rect.left - MARKER_SIZE / 2;
         const y = clientY - rect.top - MARKER_SIZE;
 
-        setMarkerPos({ x, y });
+        setFormData({ ...formData, x, y });
         setShowMarker(true);
     }
 
@@ -51,13 +51,13 @@ const TodoForm = () => {
                     />
                     {showMarker && <Image
                         src={marker}
-                        style={{ width: `${MARKER_SIZE}px`, height: `${MARKER_SIZE}px`, position: 'absolute', left: markerPos.x, top: markerPos.y }}
+                        style={{ width: `${MARKER_SIZE}px`, height: `${MARKER_SIZE}px`, position: 'absolute', left: formData.x, top: formData.y }}
                     />}
                 </div>
             </div>
             <Form.Group>
-                <Form.Input disabled name="x" label="X" value={markerPos.x} />
-                <Form.Input disabled name="y" label="Y" value={markerPos.y} />
+                <Form.Input disabled name="x" label="X" value={formData.x} />
+                <Form.Input disabled name="y" label="Y" value={formData.y} />
             </Form.Group>
             <Form.Input
                 name="title"
