@@ -1,0 +1,32 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "A test todo",
+      "description": "A description of this todo",
+      "done": true,
+      "x": 0,
+      "y": 0,
+      "createdAt": "",
+      "updatedAt": ""
+    },
+    {
+      "title": "Afwasmachine leegmaken",
+      "description": "Leegmaken, borden wegzetten, nieuw zout in doen.",
+      "x": 197.29998779296875,
+      "y": 300.4166717529297,
+      "createdAt": 1603527613186,
+      "updatedAt": 1603527613186,
+      "id": 2
+    },
+    {
+      "title": "Douchen",
+      "description": "Ik ben vuil en moet mezelf dringend wassen.",
+      "x": 432.29998779296875,
+      "y": 297.4166717529297,
+      "createdAt": 1603527670524,
+      "updatedAt": 1603527670524,
+      "id": 3
+    }
+  ]
+}

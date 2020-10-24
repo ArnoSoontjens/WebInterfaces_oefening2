@@ -5,7 +5,6 @@ import Menu from "./components/Menu";
 import AddTodo from './components/addTodo/AddTodo';
 import TodoList from './components/TodoList';
 import Content from "./components/Content";
-import { Header } from 'semantic-ui-react';
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
           <Switch>
             <Content>
               <Route exact path="/">
-                <Header>List of all Todos</Header>
                 <TodoList />
               </Route>
               <Route path="/add">
