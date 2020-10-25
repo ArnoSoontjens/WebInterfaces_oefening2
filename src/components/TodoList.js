@@ -1,36 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card, Loader, Header } from "semantic-ui-react";
 import axios from "axios";
 import { DB_URL } from '../database/db';
 import Todo from './Todo';
 import { addTodoRoute } from "../routes";
 import { Link } from 'react-router-dom';
+import useAllTodos from '../hooks/useAllTodos';
 
 const TodoList = () => {
-    const [loading, setLoading] = useState(false);
-    const [todos, setTodos] = useState();
 
-    const getAllTodos = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(`${DB_URL}/todos`);
-            setTodos(response.data);
-        } catch (error) {
-            console.log("Could not load todos! " + error);
-        }
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        getAllTodos();
-    }, []);
+    const { data: todos, loading, reload: reloadTodos } = useAllTodos();
 
     const toggleTodoDone = async (id) => {
         try {
             const currentTodo = todoWithId(id);
             const response = await axios.patch(`${DB_URL}/todos/${id}`, { done: !currentTodo.done });
-            //TODO: if response != 200 --> throw error or something
-            getAllTodos();
+            reloadTodos();
         } catch (error) {
             console.error("Could not toggle done state on todo:" + error);
         }
@@ -39,9 +24,8 @@ const TodoList = () => {
     const deleteTodo = async (id) => {
         try {
             //TODO: if response != 200 --> throw error or something
-            // TODO: show confirmation to user
             const response = await axios.delete(`${DB_URL}/todos/${id}`);
-            getAllTodos();
+            reloadTodos();
         } catch (error) {
             console.error("Could not delete:" + error);
         }
@@ -58,7 +42,13 @@ const TodoList = () => {
             }
             {todos &&
                 <Card.Group>
-                    {todos.map((todo) => <Todo key={todo.id} todo={todo} onDelete={deleteTodo} onToggleDone={toggleTodoDone} />)}
+                    {todos.map((todo) =>
+                        <Todo
+                            key={todo.id}
+                            todo={todo}
+                            onDelete={deleteTodo}
+                            onToggleDone={toggleTodoDone}
+                        />)}
                 </Card.Group>
             }
         </>
