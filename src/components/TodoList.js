@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Loader, Header } from "semantic-ui-react";
 import axios from "axios";
 import { DB_URL } from '../database/db';
 import Todo from './Todo';
 import { addTodoRoute } from "../routes";
 import { Link } from 'react-router-dom';
-import useAllTodos from '../hooks/useAllTodos';
+import TodoContext from '../contexts/todoContext';
 
 const TodoList = () => {
 
-    const { data: todos, loading, reload: reloadTodos } = useAllTodos();
+    const { todos, loading, reloadTodos } = useContext(TodoContext);
 
     const toggleTodoDone = async (id) => {
         try {

@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Input, Label, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import TodoContext from '../contexts/todoContext';
 
 const ALL_TODOS = "all_todos";
 const ADD_TODO = "add_todo";
 
-const MenuExampleVertical = ({ numberOfTodos }) => {
+const MenuExampleVertical = () => {
     const [activeItem, setActiveItem] = useState();
+    const { numberOfTodos } = useContext(TodoContext);
 
     const handleItemClick = (e, { name }) => setActiveItem(name);
 

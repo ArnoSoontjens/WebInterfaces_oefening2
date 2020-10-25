@@ -7,6 +7,7 @@ import TodoList from './components/TodoList';
 import Content from "./components/Content";
 import { addTodoRoute, homeRoute } from './routes';
 import useAllTodos from './hooks/useAllTodos';
+import TodoContextProvider from './contexts/TodoContextProvider';
 
 function App() {
   const { data: todos } = useAllTodos();
@@ -15,17 +16,19 @@ function App() {
     <div className="App">
       <Router>
         <div style={{ display: 'flex' }}>
-          <Menu numberOfTodos={todos ? todos.length : 0} />
-          <Switch>
-            <Content>
-              <Route exact path={homeRoute}>
-                <TodoList />
-              </Route>
-              <Route path={addTodoRoute}>
-                <AddTodo />
-              </Route>
-            </Content>
-          </Switch>
+          <TodoContextProvider>
+            <Menu />
+            <Switch>
+              <Content>
+                <Route exact path={homeRoute}>
+                  <TodoList />
+                </Route>
+                <Route path={addTodoRoute}>
+                  <AddTodo />
+                </Route>
+              </Content>
+            </Switch>
+          </TodoContextProvider>
         </div>
       </Router>
     </div >

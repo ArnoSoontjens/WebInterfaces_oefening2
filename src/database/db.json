@@ -19,6 +19,24 @@
       "updatedAt": 1603624276686,
       "id": 2,
       "done": false
+    },
+    {
+      "title": "Test",
+      "description": "zegrge",
+      "x": 0,
+      "y": 0,
+      "createdAt": 1603626005072,
+      "updatedAt": 1603626005072,
+      "id": 3
+    },
+    {
+      "title": "Bed opdekken",
+      "description": "Leg nieuwe lakens",
+      "x": 151.29998779296875,
+      "y": 114.41667175292969,
+      "createdAt": 1603626220796,
+      "updatedAt": 1603626220796,
+      "id": 4
     }
   ]
 }
