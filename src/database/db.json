@@ -9,6 +9,16 @@
       "updatedAt": 1603622788356,
       "id": 1,
       "done": false
+    },
+    {
+      "title": "Stofzuigen",
+      "description": "De living stofzuigen",
+      "x": 474.29998779296875,
+      "y": 128.4166717529297,
+      "createdAt": 1603624276686,
+      "updatedAt": 1603624276686,
+      "id": 2,
+      "done": false
     }
   ]
 }

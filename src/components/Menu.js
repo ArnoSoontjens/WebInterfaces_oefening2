@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ALL_TODOS = "all_todos";
 const ADD_TODO = "add_todo";
 
-const MenuExampleVertical = () => {
+const MenuExampleVertical = ({ numberOfTodos }) => {
     const [activeItem, setActiveItem] = useState();
 
     const handleItemClick = (e, { name }) => setActiveItem(name);
@@ -19,7 +19,7 @@ const MenuExampleVertical = () => {
                 as={Link}
                 to='/'
             >
-                <Label color='teal'>1</Label>
+                <Label color='teal'>{numberOfTodos}</Label>
                 All Todo's
             </Menu.Item>
             <Menu.Item

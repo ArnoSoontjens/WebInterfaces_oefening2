@@ -6,13 +6,16 @@ import AddTodo from './components/addTodo/AddTodo';
 import TodoList from './components/TodoList';
 import Content from "./components/Content";
 import { addTodoRoute, homeRoute } from './routes';
+import useAllTodos from './hooks/useAllTodos';
 
 function App() {
+  const { data: todos } = useAllTodos();
+
   return (
     <div className="App">
       <Router>
         <div style={{ display: 'flex' }}>
-          <Menu />
+          <Menu numberOfTodos={todos ? todos.length : 0} />
           <Switch>
             <Content>
               <Route exact path={homeRoute}>

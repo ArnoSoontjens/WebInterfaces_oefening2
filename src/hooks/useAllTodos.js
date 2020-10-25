@@ -20,7 +20,7 @@ const useAllTodos = () => {
 
     useEffect(() => {
         getAllTodos();
-    });
+    }, []);
 
     const reload = () => getAllTodos();
 
