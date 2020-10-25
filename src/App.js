@@ -5,6 +5,7 @@ import Menu from "./components/Menu";
 import AddTodo from './components/addTodo/AddTodo';
 import TodoList from './components/TodoList';
 import Content from "./components/Content";
+import { addTodoRoute, homeRoute } from './routes';
 
 function App() {
   return (
@@ -14,10 +15,10 @@ function App() {
           <Menu />
           <Switch>
             <Content>
-              <Route exact path="/">
+              <Route exact path={homeRoute}>
                 <TodoList />
               </Route>
-              <Route path="/add">
+              <Route path={addTodoRoute}>
                 <AddTodo />
               </Route>
             </Content>

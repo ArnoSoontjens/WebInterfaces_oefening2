@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import { Form, Image } from "semantic-ui-react";
 import blueprint from '../../assets/blueprint.jpeg';
 import marker from "../../assets/marker.png";
-import axios from "axios";
-import { DB_URL } from '../../database/db';
-import { useHistory } from "react-router-dom";
 
 const MARKER_SIZE = 50;
 const MAP_ID = "blueprint";
 
-const TodoForm = () => {
-    const [loading, setLoading] = useState(false);
+const TodoForm = ({ loading, onSubmit }) => {
     const [showMarker, setShowMarker] = useState(false);
-    const history = useHistory();
 
     const [formData, setFormData] = useState({
         title: "",
@@ -22,19 +17,6 @@ const TodoForm = () => {
     })
 
     const onChange = (e, { name, value }) => setFormData({ ...formData, [name]: value });
-
-    const onSubmit = async () => {
-        setLoading(true);
-        const { title, description, x, y } = formData;
-        const now = new Date().getTime();
-        try {
-            const response = await axios.post(`${DB_URL}/todos`, { title, description, x, y, createdAt: now, updatedAt: now });
-        } catch (error) {
-            console.error("Could not create new todo:" + error);
-        }
-        setLoading(false);
-        history.push("/");
-    }
 
     const onPositionSelected = ({ clientX, clientY }) => {
         const rect = document.getElementById(MAP_ID).getBoundingClientRect();
@@ -46,7 +28,7 @@ const TodoForm = () => {
     }
 
     return (
-        <Form loading={loading} onSubmit={onSubmit}>
+        <Form onSubmit={() => onSubmit(formData)}>
             <div style={{ width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "20px", marginBottom: "20px" }}>
                 <div style={{ position: 'relative' }} onClick={onPositionSelected}>
                     <Image
