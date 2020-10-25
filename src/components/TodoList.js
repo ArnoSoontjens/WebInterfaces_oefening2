@@ -14,7 +14,7 @@ const TodoList = () => {
     const toggleTodoDone = async (id) => {
         try {
             const currentTodo = todoWithId(id);
-            const response = await axios.patch(`${DB_URL}/todos/${id}`, { done: !currentTodo.done });
+            await axios.patch(`${DB_URL}/todos/${id}`, { done: !currentTodo.done });
             reloadTodos();
         } catch (error) {
             console.error("Could not toggle done state on todo:" + error);
@@ -24,7 +24,7 @@ const TodoList = () => {
     const deleteTodo = async (id) => {
         try {
             //TODO: if response != 200 --> throw error or something
-            const response = await axios.delete(`${DB_URL}/todos/${id}`);
+            await axios.delete(`${DB_URL}/todos/${id}`);
             reloadTodos();
         } catch (error) {
             console.error("Could not delete:" + error);

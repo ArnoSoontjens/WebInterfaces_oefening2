@@ -14,7 +14,7 @@ const AddTodo = () => {
         const { title, description, x, y } = todoData;
         const now = new Date().getTime();
         try {
-            const response = await axios.post(`${DB_URL}/todos`, { title, description, x, y, createdAt: now, updatedAt: now });
+            await axios.post(`${DB_URL}/todos`, { title, description, x, y, createdAt: now, updatedAt: now });
             reloadTodos();
         } catch (error) {
             console.error("Could not create new todo:" + error);

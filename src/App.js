@@ -6,11 +6,9 @@ import AddTodo from './components/addTodo/AddTodo';
 import TodoList from './components/TodoList';
 import Content from "./components/Content";
 import { addTodoRoute, homeRoute } from './routes';
-import useAllTodos from './hooks/useAllTodos';
 import TodoContextProvider from './contexts/TodoContextProvider';
 
 function App() {
-  const { data: todos } = useAllTodos();
 
   return (
     <div className="App">
